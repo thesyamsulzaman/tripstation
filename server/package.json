@@ -1,0 +1,34 @@
+{
+  "name": "tripstation_frontend-spa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "backend": "nodemon backend/index.js"
+  },
+  "keywords": [],
+  "author": "Syamsul Zaman",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.7.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.12",
+    "moment": "^2.24.0",
+    "pg": "^8.5.1",
+    "react-redux": "^5.0.7",
+    "saslprep": "^1.0.3",
+    "socket.io": "^3.1.1",
+    "supports-color": "^7.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.19.1"
+  }
+}
