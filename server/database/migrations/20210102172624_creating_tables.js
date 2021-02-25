@@ -8,10 +8,11 @@ exports.up = function(knex) {
       table.string("email").unique("email");
       table.string("hashed_password");
       table.string("salt");
+      table.string("profile_picture").defaultTo("default.png");
       table.timestamp("created_at").defaultTo(knex.fn.now());
       table.timestamp("updated_at").defaultTo(knex.fn.now());
     })
-    .createTable("trips", function(table) {
+    .createTable("posts", function(table) {
       table.increments("id");
       table.string("title");
       table.string("body");
@@ -23,5 +24,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable("users").dropTable("trips");
+  return knex.schema.dropTable("users").dropTable("posts");
 };

@@ -7,18 +7,25 @@ const UserController = require("../controllers/user");
 const User = require("../models/user");
 const UserValidator = require("../validators/user");
 
+const upload = require("../middleware/uploader");
+
+
+
+
 router.get("/", UserController.getAllUsers);
 router.get("/:userId", UserController.getUser);
 router.get("/auth", authenticateToken, UserController.auth);
 
 router.delete("/:userId", UserController.delete);
 
-router.post("/", UserValidator.registerValidator(), UserController.createUser);
+router.post("/", upload.single('profile_picture') ,UserValidator.registerValidator(), UserController.createUser);
+
 router.put(
   "/:userId",
   UserValidator.updateValidator(),
   UserController.updateUser
 );
+
 router.post("/login", UserValidator.loginValidator(), UserController.loginUser);
 
 module.exports = router;

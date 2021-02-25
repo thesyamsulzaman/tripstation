@@ -44,21 +44,24 @@ exports.auth = (req, res, next) => {
 
 exports.createUser = async (req, res, next) => {
   const { username, first_name, last_name, email, password } = req.body;
+  const profile_picture = req.file.filename;
 
   try {
     const Errors = validationResult(req);
     if (!Errors.isEmpty()) return res.json(Errors.mapped());
 
     const salt = Math.round(new Date().valueOf() * Math.random()) + "";
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashed_password = await bcrypt.hash(password, 10);
+
 
     const newUser = await User.create({
       username,
       first_name,
       last_name,
       email,
-      hashed_password: hashedPassword,
-      salt
+      hashed_password,
+      salt,
+      profile_picture
     });
 
     if (!newUser) res.json({ status: 401, message: "User creation failed" });
