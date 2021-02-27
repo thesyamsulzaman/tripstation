@@ -15,6 +15,7 @@ module.exports = {
         "created_at"
       )
       .orderBy("updated_at", "desc");
+
   },
   findUserById(id) {
     return db("users")

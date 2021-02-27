@@ -12,21 +12,21 @@ const upload = require("../middleware/uploader");
 //const upload = multer();
 
 router.get("/", UserController.getAllUsers);
-router.get("/:userId", UserController.getUser);
 router.get("/auth", authenticateToken, UserController.auth);
+router.get("/:userId", UserController.getUser);
 
 router.delete("/:userId", UserController.delete);
 
 router.post(
   "/",
-  upload.single('profile_picture'),
+  upload.single("profile_picture"),
   UserValidator.registerValidator(),
   UserController.createUser
 );
 
 router.put(
   "/:userId",
-  upload.single('profile_picture'),
+  upload.single("profile_picture"),
   UserValidator.updateValidator(),
   UserController.updateUser
 );

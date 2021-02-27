@@ -4,7 +4,7 @@ exports.seed = function(knex) {
   return knex('users').del()
     .then(function () {
       // Inserts seed entries
-      return knex('users').insert([
+      return knex('posts').insert([
         {
           username: "samparker",
           first_name: "Sammy",

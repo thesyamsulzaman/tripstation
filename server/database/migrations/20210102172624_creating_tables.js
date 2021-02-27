@@ -14,15 +14,19 @@ exports.up = function(knex) {
     })
     .createTable("posts", function(table) {
       table.increments("id");
+      table.integer("user_id");
       table.string("title");
       table.string("body");
       table.integer("comments_count").defaultTo(0);
       table.integer("likes_count").defaultTo(0);
       table.timestamp("created_at").defaultTo(knex.fn.now());
       table.timestamp("updated_at").defaultTo(knex.fn.now());
-    });
+    })
+    .createTable("comments", function(table) {
+      table.increments("id");
+    })
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable("users").dropTable("posts");
+  return knex.schema.dropTable("users").dropTable("posts").dropTable("posts");
 };
