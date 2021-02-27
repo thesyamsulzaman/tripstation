@@ -19,7 +19,10 @@ app.use(cookieParser());
 // Loading the static files
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+
 app.use("/api/users", require("./routes/users"));
+app.use("/api/posts", require("./routes/posts"));
+app.use("/api/comments", require("./routes/comments"));
 
 // define custom error message on not found routes
 app.use((req, res, next) => {

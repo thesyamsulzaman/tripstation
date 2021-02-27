@@ -24,9 +24,14 @@ exports.up = function(knex) {
     })
     .createTable("comments", function(table) {
       table.increments("id");
+      table.integer("user_id");
+      table.integer("post_id");
+      table.string("body");
+      table.timestamp("created_at").defaultTo(knex.fn.now());
+      table.timestamp("updated_at").defaultTo(knex.fn.now());
     })
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable("users").dropTable("posts").dropTable("posts");
+  return knex.schema.dropTable("users").dropTable("posts").dropTable("comments");
 };
