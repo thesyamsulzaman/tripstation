@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
+const uploader = require("../middleware/uploader");
 
 const User = require("../models/user");
 const UserValidator = require("../validators/user");
@@ -44,15 +45,16 @@ exports.auth = (req, res, next) => {
 
 exports.createUser = async (req, res, next) => {
   const { username, first_name, last_name, email, password } = req.body;
-  const profile_picture = req.file.filename;
+  const profile_picture = req.file ? req.file.filename : "default.png";
 
   try {
     const Errors = validationResult(req);
-    if (!Errors.isEmpty()) return res.json(Errors.mapped());
+    if (!Errors.isEmpty()) {
+      return res.json(Errors.mapped());
+    }
 
     const salt = Math.round(new Date().valueOf() * Math.random()) + "";
     const hashed_password = await bcrypt.hash(password, 10);
-
 
     const newUser = await User.create({
       username,
@@ -74,6 +76,7 @@ exports.createUser = async (req, res, next) => {
 exports.updateUser = async (req, res, next) => {
   const id = parseInt(req.params.userId);
   const { username, first_name, last_name, email } = req.body;
+  const profile_picture = req.file ? req.file.filename : "default.png";
 
   try {
     const Errors = validationResult(req);
@@ -83,7 +86,8 @@ exports.updateUser = async (req, res, next) => {
       username,
       first_name,
       last_name,
-      email
+      email,
+      profile_picture
     });
 
     if (!newUser) res.json({ status: 401, message: "Updating user failed" });

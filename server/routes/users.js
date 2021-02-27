@@ -8,9 +8,8 @@ const User = require("../models/user");
 const UserValidator = require("../validators/user");
 
 const upload = require("../middleware/uploader");
-
-
-
+//const multer = require("multer");
+//const upload = multer();
 
 router.get("/", UserController.getAllUsers);
 router.get("/:userId", UserController.getUser);
@@ -18,10 +17,16 @@ router.get("/auth", authenticateToken, UserController.auth);
 
 router.delete("/:userId", UserController.delete);
 
-router.post("/", upload.single('profile_picture') ,UserValidator.registerValidator(), UserController.createUser);
+router.post(
+  "/",
+  upload.single('profile_picture'),
+  UserValidator.registerValidator(),
+  UserController.createUser
+);
 
 router.put(
   "/:userId",
+  upload.single('profile_picture'),
   UserValidator.updateValidator(),
   UserController.updateUser
 );

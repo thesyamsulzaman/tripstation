@@ -16,8 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use("/uploads", express.static("uploads"));
-
+// Loading the static files
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api/users", require("./routes/users"));
 
