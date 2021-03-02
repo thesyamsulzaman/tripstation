@@ -1,9 +1,10 @@
 import React from "react";
-import { 
+import {
   HeaderContainer,
   UserBannerContainer,
   BadgeCategoriesContainer,
   PostsContainer,
+  PostCardContainer
 } from "../containers";
 
 export default function Home() {
@@ -13,7 +14,11 @@ export default function Home() {
       <UserBannerContainer />
       <div className="mx-auto p-3 mt-2 h-screen bg-gray-100 rounded-xl">
         <BadgeCategoriesContainer />
-        <PostsContainer />
+        <PostsContainer>
+          <PostCardContainer />
+          <PostCardContainer />
+          <PostCardContainer />
+        </PostsContainer>
       </div>
     </section>
   );

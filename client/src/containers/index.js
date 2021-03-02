@@ -1,4 +1,5 @@
 export { HeaderContainer } from "./header";
-export { UserBannerContainer } from "./user.banner";
+export { UserBannerContainer } from "./userBanner";
 export { PostsContainer } from "./posts";
-export { BadgeCategoriesContainer } from "./badge.categories";
+export { BadgeCategoriesContainer } from "./badgeCategories";
+export { PostCardContainer } from "./postCard";
